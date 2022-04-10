@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project22/constants.dart';
 import 'package:project22/stationModel.dart';
 
 class stationDetails extends StatefulWidget {
@@ -16,53 +17,49 @@ class stationDetails extends StatefulWidget {
 }
 
 class _StationDetailState extends State<stationDetails> {
-  // int _sliderVal = 1;
   @override
   Widget build(BuildContext context) {
-    // 1
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.stations.name),
+        title: Text(widget.stations.name + ' Station',
+            style: TextStyle(color: firstColor)),
+        backgroundColor: secondColor,
+        iconTheme: IconThemeData(color: firstColor),
       ),
-      // 2
       body: SafeArea(
-        // 3
         child: Column(
           children: <Widget>[
-            // 4
-            SizedBox(
-              height: 300,
-              width: double.infinity,
-              child: Image(
-                image: AssetImage(widget.stations.imgName),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/images/' + widget.stations.imgName + 'logo.png',
+                      fit: BoxFit.cover,
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
+                  Text(
+                    ' ' + widget.stations.name + ' Station',
+                    style: TextStyle(
+                      color: secondColor,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
               ),
             ),
-            // 5
-            const SizedBox(
-              height: 4,
+            Card(
+              color: thirdColor,
+              shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Image.asset(
+                'assets/images/' + widget.stations.imgName + 'Station.jpg',
+                width: 300,
+              ),
             ),
-            // 6
-            Text(
-              widget.stations.name,
-              style: const TextStyle(fontSize: 18),
-            ),
-            // TODO: Add Expanded
-            // 7
-            // Expanded(
-            //   // 8
-            //   child: ListView.builder(
-            //     padding: const EdgeInsets.all(7.0),
-            //     itemCount: widget.stations.ingredients.length,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       final ingredient = widget.stations.ingredients[index];
-            //       // 9
-            //       // TODO: Add ingredient.quantity
-            //       return Text('${ingredient.quantity * _sliderVal} '
-            //           '${ingredient.measure} '
-            //           '${ingredient.name}');
-            //     },
-            //   ),
-            // ),
           ],
         ),
       ),
